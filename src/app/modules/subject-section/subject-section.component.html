@@ -1,0 +1,37 @@
+<form [formGroup]="subjectSection" novalidate (ngSubmit)="save(subjectSection)">
+    <div class="form-group">
+        <label for="subject">Name</label>
+        <input type="text" formControlName="subject">
+
+
+        <!--display error message if name is not valid-->
+        <small *ngIf="!subjectSection.controls['subject'].valid" class="text-danger">
+            Name is required (minimum 5 characters).
+        </small>
+    </div>
+
+    <!-- list of gradeSection -->
+    <div formArrayName="gradeSection">
+        <div *ngFor="let gradeSection of getGradeSectionFormArray().controls; let i=index">
+            <!-- address header, show remove button when more than one address available -->
+            <div>
+                <span>Grade {{i + 1}}</span>
+                <span (click)="removeGradeSection(i)">
+                    remove
+                </span>
+            </div>
+
+            <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
+            <div [formGroupName]="i">
+                <app-grade-section [gradeGroup]="getGradeSectionFormGroup(i)"></app-grade-section>
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="!subjectSection.valid">Submit</button>
+
+</form>
+
+<button (click)="addGradeSection();">Add new section</button>
+
+<pre>{{ subjectSection.value | json }}</pre>
+

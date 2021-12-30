@@ -1,0 +1,15 @@
+<div [formGroup]="gradeGroup">
+    <div>
+        <label>type</label>
+        <input type="text" formControlName="type">
+        <!-- display error message if type is not valid -->
+        <small [hidden]="gradeGroup.get('type')?.valid">
+            type is required
+        </small>
+    </div>
+    <!-- postcode -->
+    <div>
+        <label>grade</label>
+        <input type="text" formControlName="grade">
+    </div>
+</div>
