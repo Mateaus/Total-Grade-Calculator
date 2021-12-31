@@ -1,0 +1,33 @@
+<div [formGroup]="categoryGroup">
+    <div>
+        <label>Category</label>
+        <input type="text" formControlName="category">
+        <!-- display error message if type is not valid -->
+        <small *ngIf="!categoryGroup.get('category')?.valid && categoryGroup.get('category')?.touched">
+            category is required
+        </small>
+    </div>
+    <!-- postcode -->
+    <div>
+        <label>GradeWeight</label>
+        <input type="text" formControlName="gradeWeight">
+    </div>
+
+    <button type="button" (click)="addGradeSection()">Add new grade section</button>
+
+    <div formArrayName="gradeSection">
+        <div *ngFor="let gradeSection of getGradeSectionFormArray().controls; let i=index">
+            <div>
+                <span>Grade {{ i + 1 }}</span>
+                <span (click)="removeGradeSection(i)">
+                    remove
+                </span>
+            </div>
+
+            <div [formGroupName]="i">
+                <app-grade-section [gradeGroup]="getGradeSectionFormGroup(i)"></app-grade-section>
+            </div>
+        </div>
+
+    </div>
+</div>

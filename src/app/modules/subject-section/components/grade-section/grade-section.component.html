@@ -1,15 +1,15 @@
 <div [formGroup]="gradeGroup">
     <div>
-        <label>type</label>
-        <input type="text" formControlName="type">
+        <label>Task Name</label>
+        <input type="text" formControlName="taskName">
         <!-- display error message if type is not valid -->
-        <small [hidden]="gradeGroup.get('type')?.valid">
-            type is required
+        <small *ngIf="!gradeGroup.get('taskName')?.valid && gradeGroup.get('taskName')?.touched">
+            task name is required
         </small>
     </div>
     <!-- postcode -->
     <div>
-        <label>grade</label>
-        <input type="text" formControlName="grade">
+        <label>Task Grade</label>
+        <input type="text" formControlName="taskGrade">
     </div>
 </div>

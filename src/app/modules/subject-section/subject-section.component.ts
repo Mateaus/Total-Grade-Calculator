@@ -9,46 +9,44 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 export class SubjectSectionComponent implements OnInit {
 
   subjectSection: FormGroup = new FormGroup({
-    subject: new FormControl(''),
-    totalPoints: new FormControl(),
-    gradeSection: new FormArray([
-
-    ])
+    subject: new FormControl('', Validators.required),
+    totalPoints: new FormControl(0, [Validators.required, Validators.min(0), Validators.max(10000)]),
+    categorySection: new FormArray([])
   });
 
   constructor() { }
 
   ngOnInit(): void {
-    // this.subjectSection.get('gradeSection')?.value
-    
+    console.log(this.subjectSection.get('subject')?.touched);
   }
 
   initGradeSection() {
     return new FormGroup({
-      type: new FormControl('', Validators.required),
-      grade: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)])
+      category: new FormControl('', Validators.required),
+      gradeWeight: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)]),
+      gradeSection: new FormArray([])
     });
   }
 
-  addGradeSection() {
-    const control = <FormArray>this.subjectSection.controls['gradeSection'];
+  addCategorySection() {
+    const control = <FormArray>this.subjectSection.controls['categorySection'];
     control.push(this.initGradeSection());
   }
 
-  removeGradeSection(i: number) {
-    const control = <FormArray>this.subjectSection.controls['gradeSection'];
+  removeCategorySection(i: number) {
+    const control = <FormArray>this.subjectSection.controls['categorySection'];
     control.removeAt(i);
   }
 
-  save($event: any) {
-    console.log($event);
+  saveForm(form: FormGroup) {
+    console.log(form.value);
   }
 
-  getGradeSectionFormArray() {
-    return (this.subjectSection.get('gradeSection') as FormArray);
+  getCategorySectionFormArray() {
+    return (this.subjectSection.get('categorySection') as FormArray);
   }
 
-  getGradeSectionFormGroup(i: number) {
-    return (this.subjectSection.get('gradeSection') as FormArray).controls[i] as FormGroup;
+  getCategorySectionFormGroup(i: number) {
+    return (this.subjectSection.get('categorySection') as FormArray).controls[i] as FormGroup;
   }
 }

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-grade-section',
@@ -14,5 +14,4 @@ export class GradeSectionComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
