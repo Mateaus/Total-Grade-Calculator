@@ -6,7 +6,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './category-section.component.html',
   styleUrls: ['./category-section.component.scss']
 })
-export class CategorySectionComponent implements OnInit {
+export class CategorySectionComponent {
 
   @Input() categoryGroup!: FormGroup;
   @Input() index!: number;
@@ -14,10 +14,6 @@ export class CategorySectionComponent implements OnInit {
   @Output() categoryRemoveEvent = new EventEmitter<number>();
 
   constructor() {
-  }
-  
-  ngOnInit() {
-    this.addGradeSection();
   }
 
   initGradeSection() {

@@ -6,7 +6,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './subject-section.component.html',
   styleUrls: ['./subject-section.component.scss']
 })
-export class SubjectSectionComponent implements OnInit {
+export class SubjectSectionComponent {
 
   subjectSection: FormGroup = new FormGroup({
     subject: new FormControl('', Validators.required),
@@ -15,10 +15,6 @@ export class SubjectSectionComponent implements OnInit {
   });
 
   constructor() { }
-
-  ngOnInit(): void {
-    this.addCategorySection();
-  }
 
   initGradeSection() {
     return new FormGroup({

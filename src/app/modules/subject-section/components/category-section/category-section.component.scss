@@ -1,7 +1,7 @@
 :host {
 
     .category-group {
-        padding: 16px;
+        padding: 16px 16px 0;
 
         .form-header {
             display: flex;
@@ -9,7 +9,7 @@
             justify-content: space-between;
             margin-bottom: 16px;
             border-bottom: 2px solid #333333;
-            padding: 4px;
+            padding: 4px 0;
 
             .form-title {
                 font-size: 20px;
@@ -50,7 +50,7 @@
     
         .form-add-grade {
             margin-top: 16px;
-            border: 2px solid #1184b9;
+            border: 2px solid #1175a3;
             border-radius: 4px;
             padding: 8px;
             font-size: 16px;

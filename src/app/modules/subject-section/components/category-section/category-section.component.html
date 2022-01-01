@@ -25,15 +25,8 @@
 
     <div formArrayName="gradeSection">
         <div *ngFor="let gradeSection of getGradeSectionFormArray().controls; let i=index">
-            <div>
-                <span>Grade {{ i + 1 }}</span>
-                <span (click)="removeGradeSection(i)">
-                    remove
-                </span>
-            </div>
-
             <div [formGroupName]="i">
-                <app-grade-section [gradeGroup]="getGradeSectionFormGroup(i)"></app-grade-section>
+                <app-grade-section [gradeGroup]="getGradeSectionFormGroup(i)" [index]="i" (gradeRemoveEvent)="removeGradeSection($event);"></app-grade-section>
             </div>
         </div>
 

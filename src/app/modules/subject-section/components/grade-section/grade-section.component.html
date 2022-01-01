@@ -1,15 +1,23 @@
-<div [formGroup]="gradeGroup">
-    <div>
-        <label>Task Name</label>
-        <input type="text" formControlName="taskName">
-        <!-- display error message if type is not valid -->
-        <small *ngIf="!gradeGroup.get('taskName')?.valid && gradeGroup.get('taskName')?.touched">
-            task name is required
-        </small>
+<div [formGroup]="gradeGroup" class="grade-group">
+
+    <div class="form-header">
+        <span class="form-title">Grade Section {{ index + 1 }}</span>
+        <button class="remove-self" type="button" (click)="removeSelf();">X</button>
     </div>
-    <!-- postcode -->
-    <div>
-        <label>Task Grade</label>
-        <input type="text" formControlName="taskGrade">
+
+    <div class="form-controllers">
+        <div class="form-controller">
+            <label class="form-label">Task Name</label>
+            <input class="form-input" type="text" formControlName="taskName">
+            <!-- display error message if type is not valid -->
+            <small *ngIf="!gradeGroup.get('taskName')?.valid && gradeGroup.get('taskName')?.touched">
+                task name is required
+            </small>
+        </div>
+        <!-- postcode -->
+        <div class="form-controller">
+            <label class="form-label">Task Grade</label>
+            <input class="form-input" type="text" formControlName="taskGrade">
+        </div>
     </div>
 </div>
