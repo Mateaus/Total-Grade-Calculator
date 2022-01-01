@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "view": "ng build --base-href https://mateaus.github.io/Total-Grade-Calculator/ --output-path docs"
   },
   "private": true,
   "dependencies": {
