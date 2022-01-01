@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <button class="form-add-category" type="button" (click)="addCategorySection();">Add Category</button>
+    <button class="form-add-category" type="button" [disabled]="!isSubjectSectionValid()" (click)="addCategorySection();">Add Category</button>
 
     <!-- list of categorySection -->
     <div formArrayName="categorySection">

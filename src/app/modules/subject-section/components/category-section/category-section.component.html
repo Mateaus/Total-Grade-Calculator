@@ -17,11 +17,11 @@
         
         <div class="form-controller">
             <label class="form-label">GradeWeight</label>
-            <input class="form-input" type="text" formControlName="gradeWeight">
+            <input class="form-input" type="number" formControlName="gradeWeight">
         </div>
     </div>
    
-    <button class="form-add-grade" type="button" (click)="addGradeSection()">Add Grade</button>
+    <button class="form-add-grade" type="button" [disabled]="!isCategorySectionValid()" (click)="addGradeSection()">Add Grade</button>
 
     <div formArrayName="gradeSection">
         <div *ngFor="let gradeSection of getGradeSectionFormArray().controls; let i=index">

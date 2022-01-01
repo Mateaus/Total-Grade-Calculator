@@ -49,4 +49,9 @@ export class CategorySectionComponent {
   getGradeSectionFormGroup(i: number) {
     return (this.categoryGroup.get('gradeSection') as FormArray).controls[i] as FormGroup;
   }
+
+  isCategorySectionValid() {
+    return (this.categoryGroup.get('category')?.valid
+      && this.categoryGroup.get('gradeWeight')?.valid);
+  }
 }

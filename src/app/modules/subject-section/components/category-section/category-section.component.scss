@@ -1,7 +1,7 @@
 :host {
 
     .category-group {
-        padding: 16px 16px 0;
+        padding: 16px 0 16px 16px;
 
         .form-header {
             display: flex;
@@ -56,6 +56,12 @@
             font-size: 16px;
             background-color: #1184b9;
             color: white;
+        }
+
+        .form-add-grade:disabled {
+            background-color: #efefef4d;
+            border-color: #dddddd;
+            color: #1010104d;
         }
     }
 }

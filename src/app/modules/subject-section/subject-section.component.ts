@@ -9,24 +9,24 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 export class SubjectSectionComponent {
 
   subjectSection: FormGroup = new FormGroup({
-    subject: new FormControl('', Validators.required),
-    totalPoints: new FormControl(0, [Validators.required, Validators.min(0), Validators.max(10000)]),
-    categorySection: new FormArray([])
+    subject: new FormControl(null, Validators.required),
+    totalPoints: new FormControl(null, [Validators.required, Validators.min(10), Validators.max(10000)]),
+    categorySection: new FormArray([], [Validators.required])
   });
 
   constructor() { }
 
-  initGradeSection() {
+  initCategorySection() {
     return new FormGroup({
-      category: new FormControl('', Validators.required),
-      gradeWeight: new FormControl('', [Validators.required, Validators.min(0), Validators.max(100)]),
-      gradeSection: new FormArray([])
+      category: new FormControl(null, Validators.required),
+      gradeWeight: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(10000)]),
+      gradeSection: new FormArray([], [Validators.required])
     });
   }
 
   addCategorySection() {
     const control = <FormArray>this.subjectSection.controls['categorySection'];
-    control.push(this.initGradeSection());
+    control.push(this.initCategorySection());
   }
 
   removeCategorySection(i: number) {
@@ -44,5 +44,14 @@ export class SubjectSectionComponent {
 
   getCategorySectionFormGroup(i: number) {
     return (this.subjectSection.get('categorySection') as FormArray).controls[i] as FormGroup;
+  }
+
+  isSubjectSectionValid() {
+    return (this.subjectSection.get('subject')?.valid
+      && this.subjectSection.get('totalPoints')?.valid);
+  }
+
+  isSubjectSectionAndSubSectionsValid() {
+
   }
 }
