@@ -17,7 +17,7 @@ export class SubjectSectionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.subjectSection.get('subject')?.touched);
+    this.addCategorySection();
   }
 
   initGradeSection() {

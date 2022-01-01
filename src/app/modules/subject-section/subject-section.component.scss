@@ -1,42 +1,42 @@
 :host {
 
-    .subject-section-container {
-        display: flex;
-        flex-direction: column;
+   .form-container {
+       padding: 64px;
 
-        .form-group {
-            display: inline-flex;
+       .form-controllers {
+           display: flex;
+           flex-direction: column;
+           gap: 24px 0;
+
+           .form-controller {
+            display: flex;
             flex-direction: column;
-
-            .form-label {
-                font-size: 16px;
-                font-weight: bold;
-            }
-
-            .form-required {
-                color: red;
-            }
-
-            .form-error {
-                color: red;
+            gap: 4px 0;
+ 
+                .form-label {
+                    font-size: 18px;
+                    .form-required {
+                        color: red;
+                    }
+                }
+    
+                .form-input {
+                    padding: 8px;
+                    font-size: 16px;
+                    border: 2px solid #333333;
+                    border-radius: 4px;
+                }
             }
         }
 
-        .form-submit {
-            font-size: 16px;
-        }
-
-        .json-block {
-            display: inline-block;
-            background-color: #333333;
-            padding: 4px 16px;
+        .form-add-category {
+            margin-top: 16px;
+            border: 2px solid #1184b9;
             border-radius: 4px;
-        
-            pre {
-                color: white;
-            }
+            padding: 8px;
+            font-size: 16px;
+            background-color: #1184b9;
+            color: white;
         }
     }
 }
-
-

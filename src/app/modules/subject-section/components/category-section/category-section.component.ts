@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,17 +6,34 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './category-section.component.html',
   styleUrls: ['./category-section.component.scss']
 })
-export class CategorySectionComponent {
+export class CategorySectionComponent implements OnInit {
 
   @Input() categoryGroup!: FormGroup;
-
-  constructor() { }
+  @Input() index!: number;
   
+  @Output() categoryRemoveEvent = new EventEmitter<number>();
+
+  constructor() {
+  }
+  
+  ngOnInit() {
+    this.addGradeSection();
+  }
+
   initGradeSection() {
     return new FormGroup({
       taskName: new FormControl('', Validators.required),
       taskGrade: new FormControl('', Validators.required)
     });
+  }
+
+  /**
+   * Emits index number event to parent in order
+   * to remove the current instance from this
+   * component in the ArrayForm.
+   */
+  removeSelf() {
+    this.categoryRemoveEvent.emit(this.index);
   }
 
   addGradeSection() {
