@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { AbstractControl, FormArray, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-subject-section',
@@ -12,7 +12,38 @@ export class SubjectSectionComponent {
     subject: new FormControl(null, Validators.required),
     totalPoints: new FormControl(null, [Validators.required, Validators.min(10), Validators.max(10000)]),
     categorySection: new FormArray([], [Validators.required])
-  });
+  }, [this.pointValidator()]);
+
+  // TODO: Refactor validator into it's own class and with a single validation purpose.
+  pointValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const totalPoints: number | null = control.get('totalPoints')?.value;
+      if (totalPoints === null) {
+        return {totalPoints: "Total points is empty."};
+      }
+
+      const categorySection: FormArray = control.get('categorySection') as FormArray;
+      if (categorySection === null || categorySection.length === 0) {
+        return {categorySection: "Category Section Array is empty"};
+      }
+
+      let totalGradeWeight = 0;
+      for (let category of categorySection.controls) {
+        const gradeWeight = category.get('gradeWeight')?.value;
+        if (gradeWeight !== null) {
+          totalGradeWeight += category.get('gradeWeight')?.value;
+        }
+      }
+
+      if (totalGradeWeight < totalPoints) {
+        return {totalPoints: "Less than total points."};
+      } else if (totalGradeWeight > totalPoints) {
+        return {totalPoints: "More than total points."};
+      }
+
+      return null;
+    }
+  }
 
   constructor() { }
 
@@ -49,9 +80,5 @@ export class SubjectSectionComponent {
   isSubjectSectionValid() {
     return (this.subjectSection.get('subject')?.valid
       && this.subjectSection.get('totalPoints')?.valid);
-  }
-
-  isSubjectSectionAndSubSectionsValid() {
-
   }
 }
