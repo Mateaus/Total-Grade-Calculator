@@ -1,6 +1,6 @@
 :host {
 
-    .grade-group {
+    .category-group {
         padding: 16px 0 16px 16px;
 
         .form-header {
@@ -46,6 +46,22 @@
                     border-radius: 4px;
                 }
             }
+        }
+    
+        .form-add-grade {
+            margin-top: 16px;
+            border: 2px solid #1175a3;
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 16px;
+            background-color: #1184b9;
+            color: white;
+        }
+
+        .form-add-grade:disabled {
+            background-color: #efefef4d;
+            border-color: #dddddd;
+            color: #1010104d;
         }
     }
 }

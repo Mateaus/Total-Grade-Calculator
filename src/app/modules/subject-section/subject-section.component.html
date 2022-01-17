@@ -1,37 +1,45 @@
-<form [formGroup]="subjectSection" novalidate (ngSubmit)="save(subjectSection)">
-    <div class="form-group">
-        <label for="subject">Name</label>
-        <input type="text" formControlName="subject">
+<form class="form-container" [formGroup]="subjectSection" novalidate (ngSubmit)="saveForm(subjectSection)">
 
-
-        <!--display error message if name is not valid-->
-        <small *ngIf="!subjectSection.controls['subject'].valid" class="text-danger">
-            Name is required (minimum 5 characters).
-        </small>
+    <div class="form-controllers">
+        <div class="form-controller">
+            <label for="subject" class="form-label">Subject<span class="form-required">*</span></label>
+            <input class="form-input" type="text" formControlName="subject" placeholder="Math/English/History">
+    
+            <!--display error message if subject is not valid-->
+            <small *ngIf="!subjectSection.get('subject')?.valid && subjectSection.get('subject')?.touched"
+                class="form-error">
+                Subject is required.
+            </small>
+        </div>
+    
+        <div class="form-controller">
+            <label for="totalPoints" class="form-label">Total Points<span class="form-required">*</span></label>
+            <input class="form-input" type="number" formControlName="totalPoints">
+    
+            <!--display error message if subject is not valid-->
+            <small *ngIf="!subjectSection.get('totalPoints')?.valid && subjectSection.get('totalPoints')?.touched"
+                class="form-error">
+                Total points is required.
+            </small>
+        </div>
     </div>
 
-    <!-- list of gradeSection -->
-    <div formArrayName="gradeSection">
-        <div *ngFor="let gradeSection of getGradeSectionFormArray().controls; let i=index">
-            <!-- address header, show remove button when more than one address available -->
-            <div>
-                <span>Grade {{i + 1}}</span>
-                <span (click)="removeGradeSection(i)">
-                    remove
-                </span>
-            </div>
+    <button class="form-add-category" type="button" [disabled]="!isSubjectSectionValid()" (click)="addCategorySection();">Add Category</button>
 
+    <!-- list of categorySection -->
+    <div formArrayName="categorySection">
+        <div *ngFor="let categorySection of getCategorySectionFormArray().controls; let i=index">
+            
             <!-- Angular assigns array index as group name by default 0, 1, 2, ... -->
             <div [formGroupName]="i">
-                <app-grade-section [gradeGroup]="getGradeSectionFormGroup(i)"></app-grade-section>
+                <app-category-section [categoryGroup]="getCategorySectionFormGroup(i)" [index]="i" (categoryRemoveEvent)="removeCategorySection($event);"></app-category-section>
             </div>
         </div>
     </div>
-    <button type="submit" [disabled]="!subjectSection.valid">Submit</button>
 
+    <button type="submit" [disabled]="!subjectSection.valid" class="form-submit">Submit</button>
 </form>
 
-<button (click)="addGradeSection();">Add new section</button>
-
-<pre>{{ subjectSection.value | json }}</pre>
-
+<div class="json-block">
+    <pre>{{ subjectSection.value | json }}</pre>
+</div>

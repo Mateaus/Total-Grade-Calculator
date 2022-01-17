@@ -4,13 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubjectSectionComponent } from './subject-section.component';
 import { GradeSectionComponent } from './components/grade-section/grade-section.component';
 import { SubjectScetionRoutingModule } from './subject-section-routing.module';
+import { CategorySectionComponent } from './components/category-section/category-section.component';
 
 
 
 @NgModule({
   declarations: [
     SubjectSectionComponent,
-    GradeSectionComponent
+    GradeSectionComponent,
+    CategorySectionComponent
   ],
   imports: [
     CommonModule,

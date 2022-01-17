@@ -1,0 +1,67 @@
+:host {
+
+   .form-container {
+       width: 400px;
+       margin: 0 auto;
+       padding: 64px;
+
+       .form-controllers {
+           display: flex;
+           flex-direction: column;
+           gap: 24px 0;
+
+           .form-controller {
+            display: flex;
+            flex-direction: column;
+            gap: 4px 0;
+ 
+                .form-label {
+                    font-size: 18px;
+                    .form-required {
+                        color: red;
+                    }
+                }
+    
+                .form-input {
+                    padding: 8px;
+                    font-size: 16px;
+                    border: 2px solid #333333;
+                    border-radius: 4px;
+                }
+            }
+        }
+
+        .form-add-category {
+            margin-top: 16px;
+            border: 2px solid #1175a3;
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 16px;
+            background-color: #1184b9;
+            color: white;
+        }
+
+        .form-add-category:disabled {
+            background-color: #efefef4d;
+            border-color: #dddddd;
+            color: #1010104d;
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 16px;
+            font-size: 16px;
+            border: 2px solid #0fa12e;
+            border-radius: 4px;
+            padding: 8px 0;
+            background-color: #11b935;
+            color: white;
+        }
+
+        .form-submit:disabled {
+            background-color: #efefef4d;
+            border-color: #dddddd;
+            color: #1010104d;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+<div [formGroup]="categoryGroup" class="category-group">
+
+    <div class="form-header">
+        <span class="form-title">Category Section {{ index + 1 }}</span>
+        <button class="remove-self" type="button" (click)="removeSelf();">X</button>
+    </div>
+
+    <div class="form-controllers">
+        <div class="form-controller">
+            <label class="form-label">Category</label>
+            <input class="form-input" type="text" formControlName="category">
+            <!-- display error message if type is not valid -->
+            <small *ngIf="!categoryGroup.get('category')?.valid && categoryGroup.get('category')?.touched">
+                category is required
+            </small>
+        </div>
+        
+        <div class="form-controller">
+            <label class="form-label">GradeWeight</label>
+            <input class="form-input" type="number" formControlName="gradeWeight">
+        </div>
+    </div>
+   
+    <button class="form-add-grade" type="button" [disabled]="!isCategorySectionValid()" (click)="addGradeSection()">Add Grade</button>
+
+    <div formArrayName="gradeSection">
+        <div *ngFor="let gradeSection of getGradeSectionFormArray().controls; let i=index">
+            <div [formGroupName]="i">
+                <app-grade-section [gradeGroup]="getGradeSectionFormGroup(i)" [index]="i" (gradeRemoveEvent)="removeGradeSection($event);"></app-grade-section>
+            </div>
+        </div>
+
+    </div>
+</div>
