@@ -6,8 +6,6 @@ import { GradeSectionComponent } from './components/grade-section/grade-section.
 import { SubjectScetionRoutingModule } from './subject-section-routing.module';
 import { CategorySectionComponent } from './components/category-section/category-section.component';
 
-
-
 @NgModule({
   declarations: [
     SubjectSectionComponent,

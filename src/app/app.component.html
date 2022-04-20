@@ -1,1 +1,15 @@
+<mat-toolbar color="primary">
+  <span>Total Grade Calculator</span>
+  <span style="flex: 1 1 auto;"></span>
+  <ng-container *ngIf="selectedTheme === 'dark-theme'">
+    <button mat-icon-button (click)="onSetTheme('light-theme')">
+      <mat-icon>brightness_medium</mat-icon>
+    </button>
+  </ng-container>
+  <ng-container *ngIf="selectedTheme === 'light-theme'">
+    <button mat-icon-button (click)="onSetTheme('dark-theme')">
+      <mat-icon>brightness_medium</mat-icon>
+    </button>
+  </ng-container>
+</mat-toolbar>
 <router-outlet></router-outlet>
